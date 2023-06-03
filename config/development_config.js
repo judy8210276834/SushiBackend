@@ -1,11 +1,12 @@
 //process.env.[參數]
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 module.exports = {
-    mysql: {
-      host: process.env.HOST,
+    mongodb: {
+      // host: process.env.HOST,
       user: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE
+      // database: process.env.DATABASE
     }
 }
