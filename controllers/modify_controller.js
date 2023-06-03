@@ -1,4 +1,6 @@
 const toRegister = require("../models/register_model");
+const Check = require("../sevice/member_check");
+check = new Check();
 
 module.exports = class Member {
   postRegister(req, res) {
@@ -9,23 +11,36 @@ module.exports = class Member {
       password: req.body.password,
       create_date: onTime,
     };
-    toRegister(res, memberData).then(
-      (result) => {
-        // 若寫入成功則回傳
-        res.json({
-          status: "註冊成功。",
-          result: result,
-        });
-        // res.send('註冊成功。');
-      },
-      (err) => {
-        // 若寫入失敗則回傳;
-        res.json({
-          result: err,
-        });
-        // res.send('註冊失敗。');
-      }
-    );
+
+    const checkEmail = check.checkEmail(memberData.email);
+
+    // 不符合email格式
+    if (checkEmail === false) {
+      res.json({
+        result: {
+          status: "註冊失敗。",
+          err: "請輸入正確的Eamil格式。(如1234@email.com)",
+        },
+      });
+    } else if (checkEmail === true) {
+      toRegister(res, memberData).then(
+        (result) => {
+          // 若寫入成功則回傳
+          res.json({
+            status: "註冊成功。",
+            result: result,
+          });
+          // res.send('註冊成功。');
+        },
+        (err) => {
+          // 若寫入失敗則回傳;
+          res.json({
+            result: err,
+          });
+          // res.send('註冊失敗。');
+        }
+      );
+    }
   }
 };
 
