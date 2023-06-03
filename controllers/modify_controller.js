@@ -1,15 +1,20 @@
 const toRegister = require("../models/register_model");
 const Check = require("../sevice/member_check");
+const encryption = require('../models/encryption');
+
 check = new Check();
 
 module.exports = class Member {
   postRegister(req, res) {
+     // 進行加密
+     const password = encryption(req.body.password);
+
     // 獲取client端資料
     const memberData = {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
-      create_date: onTime,
+      password: password,
+      create_date: onTime()
     };
 
     const checkEmail = check.checkEmail(memberData.email);

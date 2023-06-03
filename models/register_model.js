@@ -6,6 +6,8 @@ module.exports = function register(res, memberData) {
     const name = memberData.name; //post取資料方式
     const email = memberData.email;
     const password = memberData.password;
+    const create_date = memberData.create_date;
+
     // 檢查資料庫中的資料
     const collection = db.collection("member");
     let result = await collection.findOne({
@@ -24,6 +26,7 @@ module.exports = function register(res, memberData) {
       name: name,
       email: email,
       password: password,
+      create_date: create_date,
     });
     //   新增成功，導回首頁
     // res.redirect("/");
