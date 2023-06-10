@@ -7,17 +7,18 @@ check = new Check();
 module.exports = class Member {
   postRegister(req, res) {
      // 進行加密
-     const password = encryption(req.body.password);
+     const password = encryption(String(req.body.password));
 
     // 獲取client端資料
+    
     const memberData = {
-      name: req.body.name,
-      email: req.body.email,
+      name: String(req.body.name),
+      email: String(req.body.email),
       password: password,
       create_date: onTime()
     };
 
-    const checkEmail = check.checkEmail(memberData.email);
+    const checkEmail = check.checkEmail(String(memberData.email));
 
     // 不符合email格式
     if (checkEmail === false) {
