@@ -13,7 +13,10 @@ menberModifyMethod = new MenberModifyMethod();
 
 router.post('/register', function(req, res) {
   menberModifyMethod.postRegister(req, res);
-  // res.send('ok1');
+});
+
+router.post('/login', function(req, res) {
+  menberModifyMethod.postLogin(req, res);
 });
 
 module.exports = router;

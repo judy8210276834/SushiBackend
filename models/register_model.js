@@ -14,9 +14,11 @@ module.exports = function register(res, memberData) {
       email: email,
     });
 
+  
     if (result !== null) {
       // email已經存在
       //   res.redirect("/error?msg=註冊失敗，信箱重複");
+      // console.log(result);
       result.status = "註冊失敗,email已經存在";
       reject(result);
       return; //才不會繼續往下跑

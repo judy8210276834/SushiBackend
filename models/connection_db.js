@@ -12,7 +12,7 @@ let db = null;
 
 client.connect();
 console.log("連線成功");
-db = client.db("member-system");
+db = client.db("food-system");
 // 後續的資料庫操作
 //client.close(); // 關閉資料庫
 
