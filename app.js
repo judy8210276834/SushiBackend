@@ -1,5 +1,9 @@
 var member = require('./routes/member.js');
-var users = require('./routes/users');
+var users = require('./routes/users.js');
+var product = require('./routes/product.js')
+
+
+
 var initDB = require('./models/connection_db.js');
 
 initDB;
@@ -30,7 +34,9 @@ app.use(express.json());//處理req.body
 
 // 將路由套用至應用程式
 app.use('/', member);
-app.use('/users', users);
+app.use('/users', users); 
+
+app.use('/', product);
 
 // ---- 啟動伺服器 ----
 app.listen(port);

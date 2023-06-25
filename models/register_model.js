@@ -14,7 +14,7 @@ module.exports = function register(res, memberData) {
       email: email,
     });
 
-  
+   
     if (result !== null) {
       // email已經存在
       //   res.redirect("/error?msg=註冊失敗，信箱重複");
